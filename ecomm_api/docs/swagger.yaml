@@ -1,0 +1,49 @@
+openapi: 3.0.0
+info:
+  title: Customer and Product API
+  version: 1.0.0
+paths:
+  /customers:
+    post:
+      summary: Create a new customer
+      tags:
+        - Customer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+      responses:
+        '201':
+          description: Customer created successfully
+        '403':
+          description: Admin privilege required
+
+  /customers/{id}:
+    get:
+      summary: Get customer details
+      tags:
+        - Customer
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Customer details retrieved
+        '404':
+          description: Customer not found
+        '403':
+          description: Token is missing or invalid
+
+ 
